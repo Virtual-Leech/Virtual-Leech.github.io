@@ -1,0 +1,101 @@
+<style type="text/css">
+body { background-color: #333; color: #000000; overflow-y: visible; }
+</style>
+<button id="random">Load images</button>
+<input id="in-num" value="1000">
+</br>
+</br>
+<div id="images"></div> 
+<script type="text/javascript" src="./Random Imgur Images_files/jquery.min.js.download"></script>
+<script type="text/javascript" src="./Random Imgur Images_files/nude.js/compressed/nude.min.js"></script>
+<script type="text/javascript">
+		window.num_images = 1000;
+		window.char_length = 5;		
+		imgurcache = new Array();
+		jQuery(document).ready(function($) {
+			var images_el = $("#images");
+			
+			var Imgur = {
+				fetch: function(num) {
+					var self = this;
+					
+					self.total = num;
+					self.done = 0;
+					self.failures = 0;
+					self.start =+ new Date;
+					
+					$(images_el).empty();
+					
+					for(var x = 0; x < num; x++) {
+						self.hunt(function(id) {
+							self.done++;
+							$(images_el).append("<a href=\"http://i.imgur.com/"+ id +".jpg\" target=\"_blank\" rel=\"noreferrer\"><img src=\"http://i.imgur.com/"+ id +"s.png\" height=\"50\" width=\"50\" id=\""+ self.done +"\" /></a>");
+							nude.load(String(self.done));
+							nude.scan(function(result){
+							    alert(result ? "Nudity found in " + "img" + "!" : "Not nude");
+							});
+
+						});
+					}
+				},
+				
+				hunt: function(cb) {
+					var self = this,
+						id = self.random(window.char_length),
+						img = new Image;
+					
+					function fail() {
+						self.failures++;
+						self.hunt(cb);
+					}
+					
+					img.src = "http://i.imgur.com/"+ id +"s.png";
+					img.crossOrigin = "Anonymous";
+					img.onload = function() {
+						if (((img.width == 198) && (img.height == 160)) || ((img.width == 161) && (img.height == 81))) {
+							// assume this is an imgur error image and retry
+							fail();
+						} else {
+							
+							cb(id);
+						}
+					}
+					
+					img.onerror = fail;
+				},
+
+				random: function(len) {
+					var text = new Array(),
+						possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+						i;
+					
+					for (i = 0; i < len; i++) {
+						imgurchar = possible.charAt(Math.floor((Math.random() * possible.length)));
+						if(-1 == text.indexOf(imgurchar)) {
+							text.push(imgurchar);
+						} else {
+							i--;
+						}
+					}
+					
+					text = text.join("");
+					
+					if(-1 == imgurcache.indexOf(text)) {
+						imgurcache.push(text);
+						
+						return text;
+					} else {
+						self.random(window.char_length);
+						
+						return false;
+					}
+				}
+			};
+			
+			$("#random").on('click', function() {
+				var num;
+				if(!(num = $("#in-num").val())){num = 10;};
+				Imgur.fetch(num);
+			});
+		});
+</script>
