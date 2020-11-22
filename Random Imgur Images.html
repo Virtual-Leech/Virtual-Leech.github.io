@@ -4,7 +4,7 @@ body { background-color: #333; color: #000000; overflow-y: visible; }
 <button id="random">Load images</button>
 <input id="in-num" value="10">
 </br>
-</br><img id="testImage2" src="https://i.imgur.com/80MSa.jpg" width="500" height="375" alt="" crossorigin="Anonymous"/>
+</br>
 <div id="images"></div> 
 <script type="text/javascript" src="./Random Imgur Images_files/jquery.min.js.download"></script>
 <script type="text/javascript" src="./Random Imgur Images_files/nude.js/compressed/nude.min.js"></script>
@@ -29,9 +29,9 @@ body { background-color: #333; color: #000000; overflow-y: visible; }
 					for(var x = 0; x < num; x++) {
 						self.hunt(function(id) {
 							self.done++;
-							$(images_el).append("<a href=\"http://i.imgur.com/"+ id +".jpg\" target=\"_blank\" rel=\"noreferrer\"><img src=\"http://i.imgur.com/"+ id +".jpg\" height=\"500px\" width=\"500px\" id=\""+ self.done +"\" crossorigin=\"anonymous\" /></a>");
-							//nude.load(String(self.done));
-							nude.load("testImage2");
+							$(images_el).append("<a href=\"http://i.imgur.com/"+ id +".jpg\" target=\"_blank\" rel=\"noreferrer\"><img src=\"http://i.imgur.com/"+ id +".jpg\" height=\"1000px\" width=\"1000px\" id=\""+ self.done +"\" crossorigin=\"anonymous\" /></a>");
+							nude.load(String(self.done));
+							//nude.load("testImage2");
 							nude.scan(function(result){
 								if(result){
 									var idS = "#"+String(self.done);
