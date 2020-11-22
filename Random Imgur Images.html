@@ -3,6 +3,7 @@ body { background-color: #333; color: #000000; overflow-y: visible; }
 </style>
 <button id="random">Load images</button>
 <input id="in-num" value="10">
+<img id="testImage2" src="https://i.imgur.com/M04fk.jpg" width="640" height="480" alt="" />
 </br>
 </br>
 <div id="images"></div> 
@@ -30,7 +31,8 @@ body { background-color: #333; color: #000000; overflow-y: visible; }
 						self.hunt(function(id) {
 							self.done++;
 							$(images_el).append("<a href=\"http://i.imgur.com/"+ id +".jpg\" target=\"_blank\" rel=\"noreferrer\"><img src=\"http://i.imgur.com/"+ id +"s.png\" height=\"50\" width=\"50\" id=\""+ self.done +"\" /></a>");
-							nude.load(String(self.done));
+							//nude.load(String(self.done));
+							nude.load(String('testImage2'));
 							nude.scan(function(result){
 							    console.log(result ? "Nudity found in " + "img" + "!" : self.done+"Not nude");
 							});
