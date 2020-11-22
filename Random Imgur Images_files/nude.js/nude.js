@@ -38,7 +38,7 @@
 			var image = ctx.getImageData(0, 0, canvas.width, canvas.height),
 			imageData = image.data;
 
-			var myWorker = new Worker('worker.nude.js'),
+			var myWorker = new Worker('https://raw.githubusercontent.com/Virtual-Leech/Virtual-Leech.github.io/master/worker.nude.js'),
 			message = [imageData, canvas.width, canvas.height];
 			myWorker.postMessage(message);
 			myWorker.onmessage = function(event){
