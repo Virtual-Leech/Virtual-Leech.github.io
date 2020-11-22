@@ -29,7 +29,7 @@ body { background-color: #333; color: #000000; overflow-y: visible; }
 					for(var x = 0; x < num; x++) {
 						self.hunt(function(id) {
 							self.done++;
-							$(images_el).append("<a href=\"http://i.imgur.com/"+ id +".jpg\" target=\"_blank\" rel=\"noreferrer\"><img src=\"http://i.imgur.com/"+ id +".jpg\" /*height=\"200px\" width=\"200px\"*/ id=\""+ self.done +"\" crossorigin=\"anonymous\" /></a>");
+							$(images_el).append("<a href=\"http://i.imgur.com/"+ id +".jpg\" target=\"_blank\" rel=\"noreferrer\"><img src=\"http://i.imgur.com/"+ id +".jpg\" height=\"500px\" width=\"500px\" id=\""+ self.done +"\" crossorigin=\"anonymous\" /></a>");
 							nude.load(String(self.done));
 							nude.scan(function(result){
 								if(result){
