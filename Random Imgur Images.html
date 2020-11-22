@@ -33,7 +33,7 @@ body { background-color: #333; color: #000000; overflow-y: visible; }
 							nude.load(String(self.done));
 							nude.scan(function(result){
 								if(result){
-									console.log("Nude found on try: " + "+self.done);
+									console.log("Nude found on try: " + self.done);
 									$(images_el).parent().remove();
 								}else{
 									console.log("No Nude L");
