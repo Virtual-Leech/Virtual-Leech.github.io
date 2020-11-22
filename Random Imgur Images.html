@@ -34,10 +34,11 @@ body { background-color: #333; color: #000000; overflow-y: visible; }
 							nude.scan(function(result){
 								if(result){
 									console.log("Nude");
+									alert("Nude");
 								}else{
 									console.log("No Nude L");
 									var idS = "#"+String(self.done);
-									$(idS).remove();
+									//$(idS).remove();
 								}
 							});
 
